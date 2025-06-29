@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Check real-time Geneva public transport schedules with the TPG App. Get up-to-date bus and tram timings for your stop.">
+    <meta name="keywords" content="TPG, Geneva, public transport, bus, tram, timings, schedule, real-time">
+    <meta name="author" content="Rohan ODwyer">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <title>TPG App</title>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 id="main-title">TPG Bus and Tram Timings</h1>
+            <div class="toggles">
+                <div class="language-toggle">
+                    <label class="switch">
+                        <input type="checkbox" id="language-switch">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="toggle-label" id="language-label"></span>
+                </div>
+                <div class="time-toggle">
+                    <label class="switch">
+                        <input type="checkbox" id="time-format-switch">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="toggle-label" id="time-format-label"></span>
+                </div>
+                <button class="theme-toggle" id="theme-toggle">☀️</button>
+                <button id="location-list-btn" title="Nearby stops"></button>
+            </div>
+        </div>
+        <h2 id="stop-name-header" style="display: none;"></h2>
+        <button class="readme-button" id="readme-button">📖 Read Me</button>
+        <form id="bus-form">
+            <div class="search-container">
+                <div class="location-input-group">
+                    <input type="text" id="stop-name" placeholder="Enter stop name">
+                    <button type="button" id="detect-location-btn"></button>
+                    <div id="stop-suggestions"></div>
+                </div>
+                <input type="text" id="vehicle-numbers" placeholder="Enter bus/tram numbers (optional)">
+            </div>
+        </form>
+        <div id="bus-info"></div>
+        <div id="refresh-indicator" class="refresh-indicator"></div>
+        <div class="modal" id="popup-modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="modal-body"></div>
+            </div>
+        </div>
+        <div class="modal active" id="readme-modal">
+            <div class="modal-content">
+                <span class="close-readme">&times;</span>
+                <div id="readme-body"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('detect-location-btn').innerHTML = SVG_CACHE.LOCATION;
+            document.getElementById('location-list-btn').innerHTML = SVG_CACHE.NEARBY;
+        });
+    </script>
+</body>
+</html>
